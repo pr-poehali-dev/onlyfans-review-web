@@ -5,9 +5,11 @@ import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Icon from "@/components/ui/icon";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import AuthModal from "@/components/AuthModal";
 
 const Index = () => {
   const [activeTab, setActiveTab] = useState("home");
+  const [authModalOpen, setAuthModalOpen] = useState(false);
 
   const creators = [
     {
@@ -89,8 +91,8 @@ const Index = () => {
           </div>
 
           <div className="flex items-center gap-3">
-            <Button variant="ghost" size="sm">Войти</Button>
-            <Button className="gradient-primary border-0">Регистрация</Button>
+            <Button variant="ghost" size="sm" onClick={() => setAuthModalOpen(true)}>Войти</Button>
+            <Button className="gradient-primary border-0" onClick={() => setAuthModalOpen(true)}>Регистрация</Button>
           </div>
         </div>
       </nav>
@@ -408,6 +410,8 @@ const Index = () => {
           </div>
         </div>
       </footer>
+
+      <AuthModal open={authModalOpen} onOpenChange={setAuthModalOpen} />
     </div>
   );
 };
